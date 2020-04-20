@@ -21,7 +21,7 @@ It requires Vianet (PPPoE credentials) and Raisecom ISCOM HT803-1GE EPON Home Te
 - Add login credentials ```credentials.py```
 - Execute ```internet_details.py``` to get ```user ID```, ```Bandwidth usages```, ```Next billing```, ```FUP staus```
 - Get new public IP ```router_change_ip.py```
-- Test Internet and issue ticket using speedtest-cli ```test_speed_create_ticket_speedtest-cli.py``
+- Test Internet and issue ticket using speedtest-cli ```test_speed_create_ticket_speedtest-cli.py```
 - Test Internet and issue ticket using selenium ```test_speed_create_ticket_selenium.py``` (doesn't require [Speedtest-cli](https://github.com/sivel/speedtest-cli))
 - Reboot router ```router_reboot.py```
 
