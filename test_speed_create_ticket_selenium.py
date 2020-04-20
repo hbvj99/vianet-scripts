@@ -44,13 +44,14 @@ def CheckConnectionIssueTicket():
     elif (float(ping) >= set_ping):
         Login()
         driver.find_element(By.ID, 'description').send_keys(latency_msg)
+        driver.find_element(By.ID, 'submit_ticket').click() #submit_ticket
         print('Internet issue ticket is successfully created and posted as:\n\n'+latency_msg+'\n')
     else:
         Login()
         driver.find_element(By.ID, 'description').click()
         driver.find_element(By.ID, 'description').send_keys(msg)
         print('Internet issue ticket is successfully created and posted as:\n\n'+msg+'\n')
-            # driver.find_element(By.ID, 'submit_ticket').click() #submit_ticket
+        driver.find_element(By.ID, 'submit_ticket').click() #submit_ticket
     driver.get('https://customers.vianecom.np/customers/logout')
     
 if __name__ == '__main__':

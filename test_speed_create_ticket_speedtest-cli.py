@@ -39,7 +39,7 @@ def CheckConnectionIssueTicket():
         driver.find_element(By.ID, 'description').click()
         driver.find_element(By.ID, 'description').send_keys(msg)
         print('Internet issue ticket is successfully created and posted as:\n\n'+msg+'\n')
-    # driver.find_element(By.ID, 'submit_ticket').click() #submit_ticket
+    driver.find_element(By.ID, 'submit_ticket').click() #submit_ticket
     driver.get('https://customers.vianet.com.np/customers/logout')
 
 if __name__ == '__main__':
