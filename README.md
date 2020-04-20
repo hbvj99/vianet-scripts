@@ -31,3 +31,6 @@ It requires Vianet (PPPoE credentials) and Raisecom ISCOM HT803-1GE EPON Home Te
 You can modify the content, optimize the code as you may like. You can credit me by mentioning this repository if you wish. Pull requests are welcomed.
 
 **Disclaimer:** I will not be repsonsible if you issue huge amount of service tickets or sending large amount of traffic to the server. These are some of the simple scripts I wrote for learning and quick information access. 
+
+## License 
+[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](https://github.com/hbvj99/vianet-scripts/blob/master/LICENSE)
