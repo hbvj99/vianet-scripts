@@ -1,4 +1,4 @@
-# Collect Vianet Intetnet details
+# Collect Vianet Internet details
 
 from router_change_ip import *
 import credentials as c
@@ -14,25 +14,25 @@ def LoginVianet():
     driver.find_element(By.NAME, 'username').send_keys(c.vianet_usr)
     driver.find_element(By.NAME, 'password').click()
     driver.find_element(By.NAME, 'password').send_keys(c.vianet_psw)
-    driver.find_element(By.NAME, 'btnLogin').click()
+    driver.find_element(By.CSS_SELECTOR, ".btn-login").click()
     try:
-        driver.find_element(By.CSS_SELECTOR, 'body > div.container.login > div:nth-child(1) > div.col-sm-12.col-md-4 > div > div')
+        driver.find_element(By.CSS_SELECTOR, ".btn-login").click()
         sys.exit('ERROR! Login credential incorrect')
-    except NoSuchElementException:
+    except (NoSuchElementException, TypeError):
         pass
         
 def GetDetails():
-    driver.find_element(By.CSS_SELECTOR, '.btn-primary').click()
-    username = driver.find_element(By.CSS_SELECTOR, 'tbody:nth-child(1) > tr:nth-child(3) > td').text
-    speed = driver.find_element(By.CSS_SELECTOR, 'tbody:nth-child(1) > tr:nth-child(5) > td:nth-child(2)').text
-    fupStatus = driver.find_element(By.CSS_SELECTOR, 'tbody:nth-child(1) > tr:nth-child(6) > td:nth-child(2)').text
-    endDate = driver.find_element(By.CSS_SELECTOR, 'tbody:nth-child(1) > tr:nth-child(8) > td').text
-    driver.find_element(By.ID, 'tab_usage').click()
-    t.sleep(0.7)
-    usages = driver.find_element(By.CSS_SELECTOR, '.ttldownload').text
+    driver.get('https://customers.vianet.com.np/services/internet')
+    username = driver.find_element(By.CSS_SELECTOR, "tr:nth-child(2) > td:nth-child(2)").text
+    endDate = driver.find_element_by_xpath("//*[@id='stat2']/div[5]/span").text.split(' ')[2]
+    speed = driver.find_element(By.CSS_SELECTOR, ".stat3 span").text
+    fupStatus = driver.find_element(By.CSS_SELECTOR, "div:nth-child(6) > span").text.split('/')[0]
+    driver.find_element(By.CSS_SELECTOR, "div:nth-child(6) > span").click()
+    t.sleep(0.)
+    usages = driver.find_element(By.CSS_SELECTOR, "#tblUsageData .ttldownload").text
     month = driver.find_element(By.CSS_SELECTOR, '#month').text
     driver.get('https://customers.vianet.com.np/customers/logout')
-    print('Hi, '+username+' you are subscribed to '+speed+'. It is currently '+fupStatus+' and your Internet bill is due at '+endDate+'. You have used '+usages+' bandwidth')
+    print(f'Hi, {username} you are subscribed to {speed}. It is currently {fupStatus}, your Internet bill is due at {endDate}. You have used {usages} bandwidth.')
    
 if __name__ == '__main__':
     LoginVianet()
