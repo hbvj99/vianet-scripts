@@ -1,8 +1,6 @@
 import speedtest as stest
 from internet_details import *
-
-set_download_speed = 50
-set_upload_speed = 50
+from speed_variable import *
 
 servers = [3467, 10536, 4520,19356,6932] # Server id refer https://www.speedtest.net/speedtest-servers-static.php
 threads = 2 # Number of thread test
@@ -33,13 +31,17 @@ def CheckConnectionIssueTicket():
         print('Current download is '+str(download)+'Mbps, upload is '+str(upload)+'Mbps when test is made from '+location+' hosted by '+host)
     else:
         LoginVianet()
-        driver.find_element(By.CSS_SELECTOR, '.btn').click()
-        driver.find_element(By.ID, 'tab_addticket').click()
+        driver.get('https://customers.vianet.com.np/services/internet')
+        driver.find_element(By.ID, "myTicket").click()
         t.sleep(0.5)
-        driver.find_element(By.ID, 'description').click()
+        driver.find_element(By.CSS_SELECTOR, "#internet-Technical > .option_issue_type:nth-child(5)").click()
+        driver.find_element(By.ID, "description").click()
         driver.find_element(By.ID, 'description').send_keys(msg)
+    try:
+        driver.find_element(By.CSS_SELECTOR, ".btn-success").click()
         print('Internet issue ticket is successfully created and posted as:\n\n'+msg+'\n')
-    driver.find_element(By.ID, 'submit_ticket').click() #submit_ticket
+    except NoSuchElementException:
+        print('Some error occurred! ticket cannot be posted.')
     driver.get('https://customers.vianet.com.np/customers/logout')
 
 if __name__ == '__main__':
